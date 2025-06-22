@@ -1,0 +1,586 @@
+{
+  "navigation": {
+    "home": "Home",
+    "chat": "Chat",
+    "about": "About",
+    "help": "Help Center",
+    "contact": "Contact",
+    "faq": "FAQ",
+    "signIn": "Sign In",
+    "signUp": "Sign Up",
+    "aiAdvisor": "AI Academic Advisor"
+  },
+  "common": {
+    "loading": "Loading...",
+    "error": "Error",
+    "success": "Success",
+    "cancel": "Cancel",
+    "save": "Save",
+    "delete": "Delete",
+    "edit": "Edit",
+    "back": "Back",
+    "next": "Next",
+    "submit": "Submit",
+    "close": "Close",
+    "yes": "Yes",
+    "no": "No",
+    "ok": "OK",
+    "tryAgain": "Try Again",
+    "goHome": "Go Home",
+    "goBack": "Go Back",
+    "learnMore": "Learn More",
+    "readMore": "Read More",
+    "showMore": "Show More",
+    "showLess": "Show Less"
+  },
+  "home": {
+    "title": "Welcome to the AI Chatbot Advisor",
+    "subtitle": "Your smart assistant at the Faculty of Artificial Intelligence – Menoufia University",
+    "description": "Ask me anything about your study program — from admission to graduation.",
+    "startChatting": "Start Chatting Now",
+    "academicAssistant": "Your 24/7 Academic Assistant",
+    "assistantDescription": "This chatbot is here to answer your questions instantly, 24/7. Whether you're a student, a parent, or a prospective applicant, just ask!",
+    "whatYouCanAsk": "What You Can Ask",
+    "tryTheseQuestions": "Try These Questions",
+    "features": {
+      "admissionRequirements": {
+        "title": "Admission Requirements",
+        "desc": "Get info about entry criteria"
+      },
+      "academicPrograms": {
+        "title": "Academic Programs",
+        "desc": "Explore available majors"
+      },
+      "creditHourSystem": {
+        "title": "Credit Hour System",
+        "desc": "Understand credit requirements"
+      },
+      "courseRegistration": {
+        "title": "Course Registration",
+        "desc": "Learn registration process"
+      },
+      "graduationProject": {
+        "title": "Graduation Project",
+        "desc": "Project guidelines & requirements"
+      },
+      "fieldTraining": {
+        "title": "Field Training",
+        "desc": "Internship information"
+      },
+      "gradingGPA": {
+        "title": "Grading & GPA",
+        "desc": "Understand the grading scale and GPA calculation"
+      },
+      "attendanceExams": {
+        "title": "Attendance & Exams",
+        "desc": "Learn attendance rules and exam policies"
+      }
+    },
+
+    "quickQuestions": [
+      "How many credit hours do I need to graduate?",
+      "What are the admission requirements?",
+      "When is the registration deadline?",
+      "What majors are available?"
+    ]
+  },
+  "auth": {
+    "signIn": {
+      "title": "Sign In to Your Account",
+      "subtitle": "Access your chatbot dashboard and personalized features",
+      "welcomeBack": "Welcome Back",
+      "email": "Email Address",
+      "password": "Password",
+      "rememberMe": "Remember Me",
+      "forgotPassword": "Forgot Password?",
+      "signInSecurely": "Sign In Securely",
+      "signingIn": "Signing In...",
+      "noAccount": "Don't have an account?",
+      "createAccount": "Create one here",
+      "securityNotice": "Security Notice",
+      "securityDescription": "Your login is secured with Supabase authentication. We never store your password in plain text and use industry-standard security measures.",
+      "emailPlaceholder": "Enter your email address",
+      "passwordPlaceholder": "Enter your password",
+      "loginSuccess": "Login Successful! Welcome back to AI Chatbot Advisor",
+      "loginFailed": "Login Failed"
+    },
+    "signUp": {
+      "title": "Create a New Account",
+      "subtitle": "Join the chatbot platform to personalize your learning experience",
+      "getStarted": "Get Started",
+      "fullName": "Full Name",
+      "email": "Email Address",
+      "password": "Password",
+      "confirmPassword": "Confirm Password",
+      "agreeToTerms": "I agree to the",
+      "termsOfService": "Terms of Service",
+      "and": "and",
+      "privacyPolicy": "Privacy Policy",
+      "createAccount": "Create Account",
+      "creatingAccount": "Creating Account...",
+      "alreadyHaveAccount": "Already have an account?",
+      "signInHere": "Sign in here",
+      "securityNotice": "Your Data is Safe",
+      "securityDescription": "We use Supabase's industry-standard encryption to protect your personal information. Your password is securely hashed and never stored in plain text.",
+      "fullNamePlaceholder": "Enter your full name",
+      "emailPlaceholder": "Enter your email address",
+      "passwordPlaceholder": "Create a strong password",
+      "confirmPasswordPlaceholder": "Confirm your password",
+      "accountCreated": "Account Created Successfully! Please check your email to verify your account, then you can sign in.",
+      "registrationFailed": "Registration Failed",
+      "passwordStrength": {
+        "weak": "WEAK",
+        "medium": "MEDIUM",
+        "strong": "STRONG",
+        "requirements": {
+          "characters": "8+ characters",
+          "uppercase": "Uppercase",
+          "number": "Number",
+          "symbol": "Symbol"
+        }
+      }
+    },
+    "forgotPassword": {
+      "title": "Reset Your Password",
+      "subtitle": "Enter your email address and we'll send you a reset link",
+      "passwordRecovery": "Password Recovery",
+      "email": "Email Address",
+      "sendResetLink": "Send Reset Link",
+      "sendingResetLink": "Sending Reset Link...",
+      "backToSignIn": "Back to Sign In",
+      "securityNote": "Security Note",
+      "securityDescription": "For your security, password reset links expire after 1 hour. If you don't receive an email, please check your spam folder or contact support.",
+      "emailPlaceholder": "Enter your email address",
+      "checkEmail": "Check Your Email",
+      "emailSent": "We've sent a password reset link to",
+      "emailInstructions": "Click the link in your email to reset your password. If you don't see the email, check your spam folder.",
+      "tryDifferentEmail": "Try Different Email"
+    },
+    "updatePassword": {
+      "title": "Update Your Password",
+      "subtitle": "Enter your new password below",
+      "setNewPassword": "Set New Password",
+      "newPassword": "New Password",
+      "confirmNewPassword": "Confirm New Password",
+      "updatePassword": "Update Password",
+      "updatingPassword": "Updating Password...",
+      "backToSignIn": "Back to Sign In",
+      "securityNotice": "Security Notice",
+      "securityDescription": "Your new password will be securely encrypted and stored. Make sure to use a strong, unique password for your account security.",
+      "passwordPlaceholder": "Enter your new password",
+      "confirmPasswordPlaceholder": "Confirm your new password",
+      "passwordUpdated": "Password Updated!",
+      "passwordUpdateSuccess": "Your password has been successfully updated. You can now sign in with your new password.",
+      "continueToSignIn": "Continue to Sign In",
+      "invalidResetLink": "Invalid Reset Link",
+      "invalidLinkDescription": "This password reset link is invalid or has expired. Please request a new one.",
+      "requestNewResetLink": "Request New Reset Link",
+      "verifyingResetLink": "Verifying reset link..."
+    },
+    "validation": {
+      "emailRequired": "Email is required",
+      "emailInvalid": "Please enter a valid email address",
+      "passwordRequired": "Password is required",
+      "passwordMinLength": "Password must be at least 6 characters",
+      "passwordMinLength8": "Password must be at least 8 characters",
+      "fullNameRequired": "Full name is required",
+      "fullNameMinLength": "Full name must be at least 2 characters",
+      "confirmPasswordRequired": "Please confirm your password",
+      "passwordsDoNotMatch": "Passwords do not match",
+      "agreeToTermsRequired": "You must agree to the terms and conditions",
+      "fixErrors": "Please fix the errors below"
+    }
+  },
+  "chat": {
+    "title": "AI Academic Advisor",
+    "subtitle": "Faculty of AI - Menoufia University",
+    "chatHistory": "Chat History",
+    "welcome": "Welcome",
+    "newChat": "New Chat",
+    "signOut": "Sign Out",
+    "noChatSessions": "No chat sessions yet",
+    "startNewConversation": "Start a new conversation!",
+    "aiThinking": "AI is thinking...",
+    "suggestedTopics": "Suggested Topics:",
+    "typePlaceholder": "Type your question here...",
+    "pressEnterToSend": "Press Enter to send",
+    "charactersLimit": "characters",
+    "botGreeting": "Hello! I'm your AI Academic Advisor. How can I help you today?",
+    "connectedToSupabase": "Connected to Supabase",
+    "chatsAutoSaved": "Your chats are automatically saved",
+    "deleteChatConfirm": "Are you sure you want to delete this chat?",
+    "failedToCreateChat": "Failed to create new chat. Please try again.",
+    "failedToUpdateTitle": "Failed to update chat title. Please try again.",
+    "failedToDeleteChat": "Failed to delete chat. Please try again.",
+    "failedToSendMessage": "Failed to send message. Please try again.",
+    "chatAbout": "Chat about",
+    "newChatTitle": "New Chat",
+    "today": "Today",
+    "yesterday": "Yesterday",
+    "daysAgo": "days ago",
+    "suggestedTopicsList": {
+      "admissionCriteria": "Admission Criteria",
+      "programMajors": "Program Majors",
+      "creditHours": "Credit Hours",
+      "registrationDeadlines": "Registration Deadlines",
+      "graduationProject": "Graduation Project",
+      "academicAdvising": "Academic Advising",
+      "semesterCalendar": "Semester Calendar"
+    },
+    "suggestedQueries": {
+      "admissionRequirements": "What are the admission requirements?",
+      "availableMajors": "What majors are available?",
+      "creditHoursNeeded": "How many credit hours do I need?",
+      "registrationDeadlines": "When are registration deadlines?",
+      "graduationProject": "Tell me about the graduation project",
+      "academicAdvising": "How does academic advising work?",
+      "academicCalendar": "What is the academic calendar?"
+    }
+  },
+  "about": {
+    "title": "About the Faculty",
+    "subtitle": "Leading the future of artificial intelligence education in Egypt",
+    "aboutFaculty": "About the Faculty",
+    "description1": "Faculty of Artificial Intelligence at Menoufia University is a specialized institution committed to preparing students for the future of technology. Established in line with Egypt's Vision 2030, the college equips students with the skills needed to lead in AI, machine learning, and intelligent systems.",
+    "description2": "Our faculty combines theoretical knowledge with practical application, ensuring graduates are ready to tackle real-world challenges in the rapidly evolving field of artificial intelligence.",
+    "quickFacts": "Quick Facts",
+    "established": "Established: 2020",
+    "location": "Location: Shebin El-Kom, Egypt",
+    "duration": "Credit Hours: 146 Hour",
+    "language": "course lanuage: English",
+    "vision": "Vision",
+    "visionText": "To produce future-ready innovators capable of building intelligent systems that benefit industries and societies, positioning Egypt as a leader in AI education and research in the Middle East and Africa.",
+    "mission": "Mission",
+    "missionText": "To educate AI professionals through advanced programs, applied training, and world-class research aligned with sustainable development goals, fostering innovation and ethical AI practices.",
+    "ourPrograms": "Our Programs",
+    "whyChooseUs": "Why Choose Our Faculty?",
+    "industryFocused": "Industry-Focused",
+    "industryFocusedDesc": "Curriculum designed with industry partners to meet real market needs.",
+    "researchExcellence": "Research Excellence",
+    "researchExcellenceDesc": "Cutting-edge research opportunities with renowned faculty members.",
+    "globalStandards": "Global Standards",
+    "globalStandardsDesc": "International curriculum standards with English as the primary language.",
+    "stats": {
+      "studentsEnrolled": "Students Enrolled",
+      "specializedPrograms": "Specialized Programs",
+      "facultyMembers": "Faculty Members",
+      "visionAligned": "Vision Aligned"
+    },
+    "programs": {
+      "dataScience": {
+        "title": "Data Science",
+        "description": "Master the art of extracting insights from complex datasets using advanced analytics and machine learning."
+      },
+      "machineIntelligence": {
+        "title": "Machine Intelligence",
+        "description": "Develop intelligent systems that can learn, adapt, and make decisions autonomously."
+      },
+      "cybersecurity": {
+        "title": "Cybersecurity",
+        "description": "Protect digital assets and infrastructure using AI-powered security solutions."
+      },
+      "intelligentSystems": {
+        "title": "Intelligent Systems",
+        "description": "Design and build smart systems that integrate AI into real-world applications."
+      }
+    }
+  },
+  "help": {
+    "title": "Help Center",
+    "subtitle": "Need help using the chatbot or finding information?",
+    "searchPlaceholder": "Search help topics...",
+    "stillNeedHelp": "Still Need Questions?",
+    "stillNeedHelpDesc": "Can't find what you're looking for? Try our AI chatbot or contact us directly.",
+    "askChatbot": "Ask the Chatbot",
+    "contactFaculty": "Contact Faculty",
+    "troubleshooting": "Troubleshooting",
+    "topics": {
+      "howToUse": {
+        "title": "How to Use the Chatbot",
+        "content": [
+          "Type your question in Arabic or English",
+          "Use the suggested prompts to explore common topics",
+          "You can ask follow-up questions - the chatbot remembers context",
+          "Be specific for better answers"
+        ]
+      },
+      "betterAnswers": {
+        "title": "Tips for Better Answers",
+        "content": [
+          "Be specific: Try \"What are the admission requirements for cybersecurity?\"",
+          "If the answer is unclear, rephrase your question",
+          "Use keywords related to your topic",
+          "Ask one question at a time for clearer responses"
+        ]
+      },
+      "availableInfo": {
+        "title": "Available Information",
+        "content": [
+          "Admission requirements and procedures",
+          "Academic programs and specializations",
+          "Credit hour system and graduation requirements",
+          "Course registration and academic calendar",
+          "Graduation projects and field training",
+          "Grading system and GPA calculations"
+        ]
+      },
+      "commonQuestions": {
+        "title": "Common Questions",
+        "content": [
+          "\"How many credit hours do I need to graduate?\"",
+          "\"What are the admission requirements?\"",
+          "\"When is the registration deadline?\"",
+          "\"What majors are available in the faculty?\"",
+          "\"How does the field training work?\""
+        ]
+      }
+    },
+    "troubleshootingItems": [
+      {
+        "problem": "Chatbot not responding",
+        "solution": "Check your internet connection and try refreshing the page"
+      },
+      {
+        "problem": "Getting irrelevant answers",
+        "solution": "Try rephrasing your question with more specific keywords"
+      },
+      {
+        "problem": "Can't find specific information",
+        "solution": "Contact the faculty directly using the contact information provided"
+      },
+      {
+        "problem": "Technical issues",
+        "solution": "Clear your browser cache or try using a different browser"
+      }
+    ],
+    "quickActions": {
+      "tryChatbot": "Try the Chatbot",
+      "contactFaculty": "Contact Faculty",
+      "viewFaq": "View FAQ"
+    },
+    "noResults": "No results found",
+    "noResultsDesc": "Try different keywords or browse all categories above",
+    "clearSearch": "Clear Search"
+  },
+  "contact": {
+    "title": "Contact Us",
+    "subtitle": "Need to reach the faculty directly?",
+    "getInTouch": "Get in Touch",
+    "fullName": "Full Name",
+    "email": "Email Address",
+    "subject": "Subject",
+    "message": "Message",
+    "sending": "Sending...",
+    "sendMessage": "Send Message",
+    "messageSent": "Message Sent!",
+    "messageSuccess": "Thank you for contacting us. We'll get back to you soon.",
+    "messageFailed": "Failed to send message. Please try again.",
+    "needQuickAnswers": "Need Quick Answers?",
+    "quickAnswersDesc": "Try our AI chatbot for instant responses to common questions.",
+    "startChatting": "Start Chatting",
+    "contactInfo": {
+      "facultyAddress": "Faculty Address",
+      "addressText": "Menoufia University – Faculty of Artificial Intelligence\nShebin El-Kom, Egypt",
+      "email": "Email",
+      "phone": "Phone",
+      "officeHours": "Office Hours",
+      "officeHoursText": "Sunday to Thursday\n9:00 AM – 3:00 PM",
+      "website": "Website"
+    },
+    "placeholders": {
+      "fullName": "Your full name",
+      "email": "your.email@example.com",
+      "subject": "What is this about?",
+      "message": "Please describe your question or concern in detail..."
+    }
+  },
+  "faq": {
+    "title": "Frequently Asked Questions",
+    "subtitle": "Find quick answers to common questions about our faculty",
+    "searchPlaceholder": "Search FAQ...",
+    "stillHaveQuestions": "Still Have Questions?",
+    "stillHaveQuestionsDesc": "Can't find what you're looking for? Try our AI chatbot or contact us directly.",
+    "askChatbot": "Ask the Chatbot",
+    "contactFaculty": "Contact Faculty",
+    "noResults": "No results found",
+    "noResultsDesc": "Try different keywords or browse all categories above",
+    "clearSearch": "Clear Search",
+    "categories": {
+      "admission": {
+        "title": "Admission",
+        "questions": [
+          {
+            "question": "What qualifications do I need to join the college?",
+            "answer": "You need a high school certificate with a science or math track. International students must pass a math qualifier. The minimum grade requirements vary each year based on competition and available seats."
+          },
+          {
+            "question": "When does the admission process start?",
+            "answer": "Admission typically opens in July each year. Check our website regularly for exact dates and application deadlines."
+          },
+          {
+            "question": "Are there entrance exams?",
+            "answer": "Yes, there may be aptitude tests for certain programs. International students must pass a mathematics qualifier exam."
+          }
+        ]
+      },
+      "programs": {
+        "title": "Programs",
+        "questions": [
+          {
+            "question": "What majors are available?",
+            "answer": "We offer four main specializations: Data Science, Machine Intelligence, Cybersecurity, and Intelligent Systems. Each program is designed to prepare you for the future of AI technology."
+          },
+          {
+            "question": "Can I change my major?",
+            "answer": "Yes, you can change your major within the first two semesters, subject to academic performance and availability in the desired program."
+          },
+          {
+            "question": "What is the curriculum structure?",
+            "answer": "The curriculum includes core AI courses, specialization courses, electives, practical training, and a graduation project. All courses are taught in English."
+          }
+        ]
+      },
+      "creditHours": {
+        "title": "Credit Hours",
+        "questions": [
+          {
+            "question": "How many credit hours are required to graduate?",
+            "answer": "146 credit hours over 4 academic years (8 semesters). This includes core courses, electives, field training, and your graduation project."
+          },
+          {
+            "question": "What is the minimum credit hours per semester?",
+            "answer": "Students must register for a minimum of 12 credit hours per semester and a maximum of 21 credit hours."
+          },
+          {
+            "question": "How are credit hours calculated?",
+            "answer": "Each course has a specific credit hour value based on contact hours and workload. Theoretical courses are typically 3 credits, while practical courses may be 1-2 credits."
+          }
+        ]
+      },
+      "trainingProjects": {
+        "title": "Training & Projects",
+        "questions": [
+          {
+            "question": "Is there a graduation project?",
+            "answer": "Yes, it's a 6-credit project over the final year. You'll work on a real-world AI problem under faculty supervision. Field training is also mandatory."
+          },
+          {
+            "question": "How does field training work?",
+            "answer": "Field training is a mandatory 6-credit internship in your final year. Students work with industry partners or research institutions for practical experience."
+          },
+          {
+            "question": "Can I do my project with external companies?",
+            "answer": "Yes, we encourage industry collaboration. Projects can be done with approved companies under faculty supervision."
+          }
+        ]
+      },
+      "gradesAssessment": {
+        "title": "Grades & Assessment",
+        "questions": [
+          {
+            "question": "What's the grading system?",
+            "answer": "GPA-based system (0–4.0). A minimum of 2.0 is needed to graduate. Grades: A (3.7-4.0), B+ (3.3-3.6), B (3.0-3.2), C+ (2.7-2.9), C (2.3-2.6), D+ (2.0-2.2), D (1.7-1.9), F (0.0-1.6)."
+          },
+          {
+            "question": "What happens if I fail a course?",
+            "answer": "You can retake failed courses. The new grade replaces the old one in GPA calculation. However, both attempts appear on your transcript."
+          },
+          {
+            "question": "Is there a dean's list?",
+            "answer": "Yes, students with GPA 3.5 or higher and no failing grades are eligible for the dean's list each semester."
+          }
+        ]
+      },
+      "generalInfo": {
+        "title": "General Information",
+        "questions": [
+          {
+            "question": "Is the study in English?",
+            "answer": "Yes, English is the primary language of instruction for all courses, ensuring graduates are prepared for the global job market."
+          },
+          {
+            "question": "Are there scholarships available?",
+            "answer": "Yes, merit-based scholarships are available for outstanding students. Financial aid may also be available for students in need."
+          },
+          {
+            "question": "What career opportunities are available?",
+            "answer": "Graduates can work as AI engineers, data scientists, cybersecurity specialists, research scientists, or pursue advanced degrees in AI and related fields."
+          }
+        ]
+      }
+    }
+  },
+  "terms": {
+    "title": "Terms of Service",
+    "subtitle": "Please read these terms and conditions carefully before using our service",
+    "backToSignUp": "Back to Sign Up",
+    "introduction": "Welcome to the AI Academic Advisor platform. By accessing or using our chatbot services, you agree to be bound by these Terms of Service.",
+    "sections": {
+      "useOfService": {
+        "title": "Use of Service",
+        "content": "You agree to use the service only for lawful academic support. You must not misuse or exploit the chatbot for unethical or harmful purposes."
+      },
+      "accountResponsibility": {
+        "title": "Account Responsibility",
+        "content": "You are responsible for maintaining the confidentiality of your account credentials and any activity under your account."
+      },
+      "intellectualProperty": {
+        "title": "Intellectual Property",
+        "content": "All content, code, and services provided through this app are owned by the project creators and protected under copyright laws."
+      },
+      "limitationOfLiability": {
+        "title": "Limitation of Liability",
+        "content": "The chatbot provides academic guidance based on pre-trained data and logic. We are not liable for decisions made based on chatbot responses."
+      },
+      "changesToTerms": {
+        "title": "Changes to Terms",
+        "content": "We may update these Terms at any time. Continued use of the platform indicates acceptance of the updated Terms."
+      }
+    },
+    "lastUpdated": "Last updated: June 2025",
+    "questionsTitle": "Questions About These Terms?",
+    "questionsDesc": "If you have any questions about these Terms of Service, please contact us.",
+    "contactFaculty": "Contact Faculty",
+    "helpCenter": "Help Center"
+  },
+  "privacy": {
+    "title": "Privacy Policy",
+    "subtitle": "Your privacy is important to us. Learn how we collect, use, and protect your information.",
+    "backToSignUp": "Back to Sign Up",
+    "introduction": "This Privacy Policy explains how we handle your personal information when you use the AI Academic Advisor chatbot.",
+    "sections": {
+      "informationWeCollect": {
+        "title": "Information We Collect",
+        "content": "We collect basic account information such as email and password for authentication purposes via Supabase. We also store your chat history tied to your user account."
+      },
+      "howWeUseInfo": {
+        "title": "How We Use Your Information",
+        "content": "Your information is used solely to provide academic assistance and save your chat history. We do not share your data with third parties."
+      },
+      "dataSecurity": {
+        "title": "Data Security",
+        "content": "We use Supabase to store user data securely with authentication and database rules that prevent unauthorized access."
+      },
+      "userControl": {
+        "title": "User Control",
+        "content": "You may delete your account and associated chat history at any time. Please contact support if you need help with account deletion."
+      },
+      "updatesToPolicy": {
+        "title": "Updates to This Policy",
+        "content": "We may revise this Privacy Policy as the platform evolves. Updates will be posted on this page."
+      }
+    },
+    "lastUpdated": "Last updated: June 2025",
+    "questionsTitle": "Privacy Questions?",
+    "questionsDesc": "If you have any questions about this Privacy Policy or our data practices, please contact us.",
+    "contactFaculty": "Contact Faculty",
+    "helpCenter": "Help Center"
+  },
+  "notFound": {
+    "title": "Page Not Found",
+    "description": "Sorry, the page you're looking for doesn't exist or has been moved.",
+    "goHome": "Go Home",
+    "tryChatbot": "Try the Chatbot",
+    "goBack": "Go Back"
+  }
+}
