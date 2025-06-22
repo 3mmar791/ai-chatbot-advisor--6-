@@ -89,7 +89,7 @@ export default function HomePage() {
                     isRTL ? "-left-2" : "-right-2"
                   }`}
                 >
-                  <Sparkles className="text-cyan-400 animate-spin" size={24} />
+                  {/* <Sparkles className="text-cyan-400 animate-spin" size={24} /> */}
                 </div>
               </div>
             </div>
