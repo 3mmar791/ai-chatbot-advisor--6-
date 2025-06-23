@@ -433,11 +433,11 @@ export default function ChatPage() {
             : "-translate-x-full"
         } fixed inset-y-0 ${
           isRTL ? "right-0" : "left-0"
-        } z-50 w-80 bg-white shadow-xl transform transition-transform duration-300 ease-in-out lg:translate-x-0 lg:static lg:inset-0`}
+        } z-40 w-80 bg-white shadow-xl transform transition-transform duration-300 ease-in-out lg:translate-x-0 lg:static lg:inset-0`}
       >
         {/* Sidebar Header */}
         <div className="flex items-center justify-between p-4 border-b bg-gradient-to-r from-slate-700 to-cyan-600">
-          <div>
+          <div className="py-1">
             <h2 className="text-lg font-semibold text-white">
               {t("chat.chatHistory")}
             </h2>

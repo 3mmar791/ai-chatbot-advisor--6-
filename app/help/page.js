@@ -18,7 +18,7 @@ import { useLanguage } from "@/contexts/LanguageContext";
 export default function HelpPage() {
   const [searchTerm, setSearchTerm] = useState("");
   const { t, isRTL, translations } = useLanguage();
-  console.log(translations);
+
   const helpTopics = [
     {
       icon: MessageCircle,
@@ -45,7 +45,7 @@ export default function HelpPage() {
       key: "commonQuestions",
     },
   ];
-  // Filter topics based on search term
+
   const filteredTopics = helpTopics.filter((topic) => {
     const matchesTitle = topic.title
       .toLowerCase()
@@ -125,10 +125,10 @@ export default function HelpPage() {
                     {topic.content.map((item, itemIndex) => (
                       <li
                         key={itemIndex}
-                        className="flex items-start space-x-2"
+                        className="flex items-start gap-2" // Changed from space-x-2 to gap-2
                       >
                         <CheckCircle
-                          className="text-green-500 mt-0.5 flex-shrink-0"
+                          className="text-green-500 mt-0.5 flex-shrink-0" // Added mt-0.5 for better vertical alignment
                           size={16}
                         />
                         <span className="text-gray-600">{item}</span>
