@@ -523,14 +523,14 @@ export default function UpdatePasswordPage() {
         </Card>
 
         {/* Security Notice */}
-        <div className="bg-green-50 border border-green-200 rounded-lg p-4">
+        {/* <div className="bg-green-50 border border-green-200 rounded-lg p-4">
           <h3 className="text-sm font-medium text-green-800 mb-2">
             🔒 {t("auth.updatePassword.securityNotice")}
           </h3>
           <p className="text-xs text-green-700">
             {t("auth.updatePassword.securityDescription")}
           </p>
-        </div>
+        </div> */}
       </div>
     </div>
   );

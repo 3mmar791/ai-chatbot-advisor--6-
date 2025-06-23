@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { useRouter } from "next/navigation";
+import { useRouter, usePathname } from "next/navigation";
 import {
   Menu,
   X,
@@ -27,6 +27,7 @@ export default function Navigation() {
   const [loading, setLoading] = useState(true);
   const { t, isRTL } = useLanguage();
   const router = useRouter();
+  const pathname = usePathname();
 
   // Check initial auth state
   useEffect(() => {
@@ -78,6 +79,14 @@ export default function Navigation() {
     { href: "/signup", label: t("navigation.signUp"), icon: UserPlus },
   ];
 
+  // Check if current path matches the nav item
+  const isActive = (href) => {
+    if (href === "/") {
+      return pathname === href;
+    }
+    return pathname.startsWith(href);
+  };
+
   if (loading) {
     return (
       <nav className="bg-slate-700 shadow-lg sticky top-0 z-50">
@@ -125,7 +134,11 @@ export default function Navigation() {
                   href={item.href}
                   className={`flex items-center ${
                     isRTL ? "space-x-reverse" : ""
-                  } space-x-1 text-gray-300 hover:text-cyan-400 px-3 py-2 rounded-md text-sm font-medium transition-all duration-200 hover:bg-slate-600`}
+                  } space-x-1 px-3 py-2 rounded-md text-sm font-medium transition-all duration-200 ${
+                    isActive(item.href)
+                      ? "text-cyan-400 bg-slate-600"
+                      : "text-gray-300 hover:text-cyan-400 hover:bg-slate-600"
+                  }`}
                 >
                   <Icon size={16} />
                   <span>{item.label}</span>
@@ -147,7 +160,7 @@ export default function Navigation() {
                   onClick={handleSignOut}
                   className={`flex items-center ${
                     isRTL ? "space-x-reverse" : ""
-                  } space-x-1 px-3 py-2 rounded-md text-sm font-medium transition-all duration-200 text-gray-300 hover:text-white hover:bg-slate-600`}
+                  } space-x- px-3 py-2 rounded-md text-sm font-medium transition-all duration-200 text-gray-300 hover:text-white hover:bg-slate-600`}
                 >
                   <LogOut size={16} />
                   <span>{t("navigation.signOut")}</span>
@@ -164,7 +177,11 @@ export default function Navigation() {
                       } space-x-1 px-3 py-2 rounded-md text-sm font-medium transition-all duration-200 ${
                         item.href === "/signup"
                           ? "bg-cyan-600 text-white hover:bg-cyan-700"
-                          : "text-gray-300 hover:text-white hover:bg-slate-600"
+                          : `${
+                              isActive(item.href)
+                                ? "text-white bg-slate-600"
+                                : "text-gray-300 hover:text-white hover:bg-slate-600"
+                            }`
                       }`}
                     >
                       <Icon size={16} />
@@ -200,7 +217,11 @@ export default function Navigation() {
                     href={item.href}
                     className={`flex items-center ${
                       isRTL ? "space-x-reverse" : ""
-                    } space-x-2 text-gray-300 hover:text-cyan-400 block px-3 py-2 rounded-md text-base font-medium transition-all duration-200 hover:bg-slate-700`}
+                    } space-x-2 block px-3 py-2 rounded-md text-base font-medium transition-all duration-200 ${
+                      isActive(item.href)
+                        ? "text-cyan-400 bg-slate-700"
+                        : "text-gray-300 hover:text-cyan-400 hover:bg-slate-700"
+                    }`}
                     onClick={() => setIsOpen(false)}
                   >
                     <Icon size={18} />
@@ -235,7 +256,11 @@ export default function Navigation() {
                         } space-x-2 block px-3 py-2 rounded-md text-base font-medium transition-all duration-200 ${
                           item.href === "/signup"
                             ? "bg-cyan-600 text-white hover:bg-cyan-700"
-                            : "text-gray-300 hover:text-white hover:bg-slate-600"
+                            : `${
+                                isActive(item.href)
+                                  ? "text-white bg-slate-600"
+                                  : "text-gray-300 hover:text-white hover:bg-slate-600"
+                              }`
                         }`}
                         onClick={() => setIsOpen(false)}
                       >
