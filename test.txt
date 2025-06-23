@@ -1,4 +1,1129 @@
-that is the about.js content :
+navigation file : 
+
+"use client";
+
+import { useState } from "react";
+import Link from "next/link";
+import Image from "next/image";
+import {
+  Menu,
+  X,
+  MessageCircle,
+  Home,
+  Info,
+  HelpCircle,
+  Phone,
+  FileQuestion,
+  LogIn,
+  UserPlus,
+} from "lucide-react";
+import { useLanguage } from "@/contexts/LanguageContext";
+import LanguageToggle from "@/components/LanguageToggle";
+
+export default function Navigation() {
+  const [isOpen, setIsOpen] = useState(false);
+  const { t, isRTL } = useLanguage();
+
+  const navItems = [
+    { href: "/", label: t("navigation.home"), icon: Home },
+    { href: "/chat", label: t("navigation.chat"), icon: MessageCircle },
+    { href: "/about", label: t("navigation.about"), icon: Info },
+    { href: "/help", label: t("navigation.help"), icon: HelpCircle },
+    { href: "/contact", label: t("navigation.contact"), icon: Phone },
+    { href: "/faq", label: t("navigation.faq"), icon: FileQuestion },
+  ];
+
+  const authItems = [
+    { href: "/login", label: t("navigation.signIn"), icon: LogIn },
+    { href: "/signup", label: t("navigation.signUp"), icon: UserPlus },
+  ];
+
+  return (
+    <nav className="bg-slate-700 shadow-lg sticky top-0 z-50">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex justify-between h-16">
+          <div className="flex items-center">
+            <Link
+              href="/"
+              className="flex items-center space-x-3 hover:opacity-80 transition-opacity"
+            >
+              <Image
+                src="/images/ai-logo.jpg"
+                alt="AI Logo"
+                width={40}
+                height={40}
+                className="rounded-lg mx-2"
+              />
+              <span className="text-white font-bold  sm:text-sm md:text-lg ">
+                {t("navigation.aiAdvisor")}
+              </span>
+            </Link>
+          </div>
+
+          {/* Desktop Navigation */}
+          <div className="hidden md:flex items-center space-x-4">
+            {navItems.map((item) => {
+              const Icon = item.icon;
+              return (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  className={`flex items-center ${
+                    isRTL ? "space-x-reverse" : ""
+                  } space-x-1 text-gray-300 hover:text-cyan-400 px-3 py-2 rounded-md text-sm font-medium transition-all duration-200 hover:bg-slate-600`}
+                >
+                  <Icon size={16} />
+                  <span>{item.label}</span>
+                </Link>
+              );
+            })}
+
+            {/* Language Toggle */}
+            <LanguageToggle />
+
+            {/* Auth Buttons */}
+            <div
+              className={`flex items-center space-x-2 ${
+                isRTL ? "mr-4 pr-4 border-r" : "ml-4 pl-4 border-l"
+              } border-slate-600`}
+            >
+              {authItems.map((item) => {
+                const Icon = item.icon;
+                return (
+                  <Link
+                    key={item.href}
+                    href={item.href}
+                    className={`flex items-center ${
+                      isRTL ? "space-x-reverse" : ""
+                    } space-x-1 px-3 py-2 rounded-md text-sm font-medium transition-all duration-200 ${
+                      item.href === "/signup"
+                        ? "bg-cyan-600 text-white hover:bg-cyan-700"
+                        : "text-gray-300 hover:text-white hover:bg-slate-600"
+                    }`}
+                  >
+                    <Icon size={16} />
+                    <span>{item.label}</span>
+                  </Link>
+                );
+              })}
+            </div>
+          </div>
+
+          {/* Mobile menu button */}
+          <div className="md:hidden flex items-center space-x-2">
+            <LanguageToggle />
+            <button
+              onClick={() => setIsOpen(!isOpen)}
+              className="text-gray-300 hover:text-white hover:bg-slate-600 p-2 rounded-md"
+            >
+              {isOpen ? <X size={24} /> : <Menu size={24} />}
+            </button>
+          </div>
+        </div>
+
+        {/* Mobile Navigation */}
+        {isOpen && (
+          <div className="md:hidden">
+            <div className="px-2 pt-2 pb-3 space-y-1 bg-slate-800 rounded-lg mt-2 mb-4">
+              {navItems.map((item) => {
+                const Icon = item.icon;
+                return (
+                  <Link
+                    key={item.href}
+                    href={item.href}
+                    className={`flex items-center ${
+                      isRTL ? "space-x-reverse" : ""
+                    } space-x-2 text-gray-300 hover:text-cyan-400 block px-3 py-2 rounded-md text-base font-medium transition-all duration-200 hover:bg-slate-700`}
+                    onClick={() => setIsOpen(false)}
+                  >
+                    <Icon size={18} />
+                    <span>{item.label}</span>
+                  </Link>
+                );
+              })}
+              {/* Mobile Auth Buttons */}
+              <div className="border-t border-slate-600 pt-3 mt-3">
+                {authItems.map((item) => {
+                  const Icon = item.icon;
+                  return (
+                    <Link
+                      key={item.href}
+                      href={item.href}
+                      className={`flex items-center ${
+                        isRTL ? "space-x-reverse" : ""
+                      } space-x-2 block px-3 py-2 rounded-md text-base font-medium transition-all duration-200 ${
+                        item.href === "/signup"
+                          ? "bg-cyan-600 text-white hover:bg-cyan-700"
+                          : "text-gray-300 hover:text-white hover:bg-slate-600"
+                      }`}
+                      onClick={() => setIsOpen(false)}
+                    >
+                      <Icon size={18} />
+                      <span>{item.label}</span>
+                    </Link>
+                  );
+                })}
+              </div>
+            </div>
+          </div>
+        )}
+      </div>
+    </nav>
+  );
+}
+
+
+chat file : 
+
+"use client";
+
+import { useState, useRef, useEffect } from "react";
+import { useRouter } from "next/navigation";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import {
+  Send,
+  Bot,
+  User,
+  Menu,
+  X,
+  Plus,
+  MessageSquare,
+  Trash2,
+  Edit3,
+  LogOut,
+} from "lucide-react";
+import { useAuth } from "@/hooks/useAuth";
+import {
+  saveChat,
+  getUserChats,
+  updateChatTitle,
+  updateChatMessages,
+  deleteChat,
+} from "@/lib/supabase";
+import { useLanguage } from "@/contexts/LanguageContext";
+// Security function to sanitize input
+function sanitizeInput(input) {
+  return input
+    .replace(/[<>]/g, "") // Remove potential HTML tags
+    .replace(/javascript:/gi, "") // Remove javascript: protocol
+    .replace(/on\w+=/gi, "") // Remove event handlers
+    .trim()
+    .slice(0, 500); // Limit length
+}
+
+// Thinking animation component
+function ThinkingAnimation() {
+  return (
+    <div className="flex items-center space-x-2 p-4">
+      <Bot className="text-cyan-500" size={24} />
+      <div className="flex space-x-1">
+        <div className="w-2 h-2 bg-cyan-500 rounded-full animate-bounce"></div>
+        <div
+          className="w-2 h-2 bg-cyan-500 rounded-full animate-bounce"
+          style={{ animationDelay: "0.1s" }}
+        ></div>
+        <div
+          className="w-2 h-2 bg-cyan-500 rounded-full animate-bounce"
+          style={{ animationDelay: "0.2s" }}
+        ></div>
+      </div>
+      <span className="text-gray-500 text-sm animate-pulse">
+        AI is thinking...
+      </span>
+    </div>
+  );
+}
+
+export default function ChatPage() {
+  const router = useRouter();
+  const { user, signOut, loading } = useAuth();
+  const { t, isRTL } = useLanguage();
+
+  // State for sidebar
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const [chatSessions, setChatSessions] = useState([]);
+  const [activeChatId, setActiveChatId] = useState(null);
+  const [editingChatId, setEditingChatId] = useState(null);
+  const [editingTitle, setEditingTitle] = useState("");
+
+  // Current chat state
+  const [messages, setMessages] = useState([
+    {
+      id: 1,
+      role: "bot",
+      content: `🤖 ${t("chat.botGreeting")}`,
+      timestamp: new Date(),
+    },
+  ]);
+  const [input, setInput] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+  const [isSaving, setIsSaving] = useState(false);
+  const messagesEndRef = useRef(null);
+
+  const suggestedTopics = [
+    {
+      icon: "📚",
+      text: t("chat.suggestedTopicsList.admissionCriteria"),
+      query: t("chat.suggestedQueries.admissionRequirements"),
+    },
+    {
+      icon: "🧠",
+      text: t("chat.suggestedTopicsList.programMajors"),
+      query: t("chat.suggestedQueries.availableMajors"),
+    },
+    {
+      icon: "⏳",
+      text: t("chat.suggestedTopicsList.creditHours"),
+      query: t("chat.suggestedQueries.creditHoursNeeded"),
+    },
+    {
+      icon: "📝",
+      text: t("chat.suggestedTopicsList.registrationDeadlines"),
+      query: t("chat.suggestedQueries.registrationDeadlines"),
+    },
+    {
+      icon: "🎓",
+      text: t("chat.suggestedTopicsList.graduationProject"),
+      query: t("chat.suggestedQueries.graduationProject"),
+    },
+    {
+      icon: "👨‍🏫",
+      text: t("chat.suggestedTopicsList.academicAdvising"),
+      query: t("chat.suggestedQueries.academicAdvising"),
+    },
+    {
+      icon: "📅",
+      text: t("chat.suggestedTopicsList.semesterCalendar"),
+      query: t("chat.suggestedQueries.academicCalendar"),
+    },
+  ];
+
+  // Redirect to login if not authenticated
+  useEffect(() => {
+    if (!loading && !user) {
+      router.push("/login");
+    }
+  }, [user, loading, router]);
+
+  const scrollToBottom = () => {
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+  };
+
+  useEffect(() => {
+    scrollToBottom();
+  }, [messages]);
+
+  // Load user's chat sessions
+  const loadChatSessions = async () => {
+    if (!user) return;
+
+    try {
+      const { data, error } = await getUserChats(user.id);
+      if (error) {
+        console.error("Error loading chats:", error);
+        return;
+      }
+      setChatSessions(data || []);
+    } catch (error) {
+      console.error("Error loading chats:", error);
+    }
+  };
+
+  // Load chat sessions when user is available
+  useEffect(() => {
+    if (user) {
+      loadChatSessions();
+    }
+  }, [user]);
+
+  // Handle chat selection
+  const selectChat = (chatId) => {
+    const selectedChat = chatSessions.find((chat) => chat.id === chatId);
+    if (selectedChat) {
+      setActiveChatId(chatId);
+      setMessages(selectedChat.messages || []);
+      setIsSidebarOpen(false); // Close sidebar on mobile after selection
+    }
+  };
+
+  // Create new chat
+  const createNewChat = async () => {
+    if (!user) return;
+
+    const newMessages = [
+      {
+        id: 1,
+        role: "bot",
+        content: `🤖 ${t("chat.botGreeting")}`,
+        timestamp: new Date(),
+      },
+    ];
+
+    const newTitle = `${t("chat.newChatTitle")} ${chatSessions.length + 1}`;
+
+    try {
+      setIsSaving(true);
+      const { data, error } = await saveChat(newTitle, newMessages, user.id);
+
+      if (error) {
+        alert(t("chat.failedToCreateChat"));
+        return;
+      }
+
+      setChatSessions((prev) => [data, ...prev]);
+      setActiveChatId(data.id);
+      setMessages(newMessages);
+      setIsSidebarOpen(false);
+    } catch (error) {
+      console.error("Error creating new chat:", error);
+      alert(t("chat.failedToCreateChat"));
+    } finally {
+      setIsSaving(false);
+    }
+  };
+
+  // Handle chat title editing
+  const startEditingTitle = (chatId, currentTitle) => {
+    setEditingChatId(chatId);
+    setEditingTitle(currentTitle);
+  };
+
+  const saveEditedTitle = async (chatId) => {
+    if (!editingTitle.trim()) return;
+
+    try {
+      const { error } = await updateChatTitle(chatId, editingTitle.trim());
+
+      if (error) {
+        alert("Failed to update chat title. Please try again.");
+        return;
+      }
+
+      // Update local state
+      setChatSessions((prev) =>
+        prev.map((chat) =>
+          chat.id === chatId ? { ...chat, title: editingTitle.trim() } : chat
+        )
+      );
+
+      setEditingChatId(null);
+      setEditingTitle("");
+    } catch (error) {
+      console.error("Error updating chat title:", error);
+      alert("Failed to update chat title. Please try again.");
+    }
+  };
+
+  const cancelEditingTitle = () => {
+    setEditingChatId(null);
+    setEditingTitle("");
+  };
+
+  // Delete chat
+  const handleDeleteChat = async (chatId) => {
+    if (!confirm("Are you sure you want to delete this chat?")) return;
+
+    try {
+      const { error } = await deleteChat(chatId);
+
+      if (error) {
+        alert("Failed to delete chat. Please try again.");
+        return;
+      }
+
+      // Update local state
+      setChatSessions((prev) => prev.filter((chat) => chat.id !== chatId));
+
+      // If deleted chat was active, reset to new chat
+      if (activeChatId === chatId) {
+        setActiveChatId(null);
+        setMessages([
+          {
+            id: 1,
+            role: "bot",
+            content:
+              "🤖 Hello! I'm your AI Academic Advisor. How can I help you today?",
+            timestamp: new Date(),
+          },
+        ]);
+      }
+    } catch (error) {
+      console.error("Error deleting chat:", error);
+      alert("Failed to delete chat. Please try again.");
+    }
+  };
+
+  // Simulate AI response (replace with actual API call later)
+  const simulateAIResponse = async (userMessage) => {
+    await new Promise((resolve) =>
+      setTimeout(resolve, 2000 + Math.random() * 2000)
+    );
+
+    const responses = {
+      admission:
+        "For admission to the Faculty of AI, you need a high school certificate with a science or math track. International students must pass a math qualifier. The minimum grade requirements vary each year based on competition.",
+      credit:
+        "You need 146 credit hours to graduate, distributed over 4 academic years (8 semesters). This includes core courses, electives, field training, and your graduation project.",
+      majors:
+        "We offer four main specializations: Data Science, Machine Intelligence, Cybersecurity, and Intelligent Systems. Each program is designed to prepare you for the future of AI technology.",
+      project:
+        "The graduation project is worth 6 credit hours and spans your final year. You'll work on a real-world AI problem under faculty supervision. Field training (internship) is also mandatory.",
+      default:
+        "Thank you for your question! I'm here to help with information about the Faculty of Artificial Intelligence at Menoufia University. Could you please be more specific about what you'd like to know?",
+    };
+
+    const lowerMessage = userMessage.toLowerCase();
+    let response = responses.default;
+
+    for (const [key, value] of Object.entries(responses)) {
+      if (key !== "default" && lowerMessage.includes(key)) {
+        response = value;
+        break;
+      }
+    }
+
+    return response;
+  };
+
+  const handleSend = async () => {
+    if (!input.trim() || !user) return;
+
+    const sanitizedInput = sanitizeInput(input);
+
+    const userMessage = {
+      id: Date.now(),
+      role: "user",
+      content: sanitizedInput,
+      timestamp: new Date(),
+    };
+
+    const newMessages = [...messages, userMessage];
+    setMessages(newMessages);
+    setInput("");
+    setIsLoading(true);
+
+    try {
+      const response = await simulateAIResponse(sanitizedInput);
+
+      const botMessage = {
+        id: Date.now() + 1,
+        role: "bot",
+        content: response,
+        timestamp: new Date(),
+      };
+
+      const finalMessages = [...newMessages, botMessage];
+      setMessages(finalMessages);
+
+      // Save/update chat in database
+      if (activeChatId) {
+        // Update existing chat
+        await updateChatMessages(activeChatId, finalMessages);
+        setChatSessions((prev) =>
+          prev.map((chat) =>
+            chat.id === activeChatId
+              ? { ...chat, messages: finalMessages, updated_at: new Date() }
+              : chat
+          )
+        );
+      } else {
+        // Create new chat if none is active
+        const newTitle = `Chat about ${sanitizedInput.slice(0, 30)}...`;
+        const { data, error } = await saveChat(
+          newTitle,
+          finalMessages,
+          user.id
+        );
+
+        if (!error && data) {
+          setChatSessions((prev) => [data, ...prev]);
+          setActiveChatId(data.id);
+        }
+      }
+    } catch (error) {
+      console.error("Error sending message:", error);
+      alert("Failed to send message. Please try again.");
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const handleSuggestedTopic = (query) => {
+    setInput(query);
+  };
+
+  const handleKeyPress = (e) => {
+    if (e.key === "Enter" && !e.shiftKey) {
+      e.preventDefault();
+      handleSend();
+    }
+  };
+
+  const handleSignOut = async () => {
+    try {
+      await signOut();
+      router.push("/login");
+    } catch (error) {
+      console.error("Error signing out:", error);
+    }
+  };
+
+  const formatTimestamp = (timestamp) => {
+    const date = new Date(timestamp);
+    const now = new Date();
+    const diff = now - date;
+    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+
+    if (days === 0) return t("chat.today");
+    if (days === 1) return t("chat.yesterday");
+    if (days < 7) return `${days} ${t("chat.daysAgo")}`;
+    return date.toLocaleDateString();
+  };
+
+  // Show loading while checking authentication
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-slate-50 to-cyan-50 flex items-center justify-center">
+        <div className="text-center">
+          <div className="w-8 h-8 border-4 border-cyan-500 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
+          <p className="text-gray-600">Loading...</p>
+        </div>
+      </div>
+    );
+  }
+
+  // Don't render if not authenticated
+  if (!user) {
+    return null;
+  }
+
+  return (
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-cyan-50 flex">
+      {/* Sidebar */}
+      <div
+        className={`${
+          isSidebarOpen
+            ? "translate-x-0"
+            : isRTL
+            ? "translate-x-full"
+            : "-translate-x-full"
+        } fixed inset-y-0 ${
+          isRTL ? "right-0" : "left-0"
+        } z-50 w-80 bg-white shadow-xl transform transition-transform duration-300 ease-in-out lg:translate-x-0 lg:static lg:inset-0`}
+      >
+        {/* Sidebar Header */}
+        <div className="flex items-center justify-between p-4 border-b bg-gradient-to-r from-slate-700 to-cyan-600">
+          <div>
+            <h2 className="text-lg font-semibold text-white">
+              {t("chat.chatHistory")}
+            </h2>
+            <p className="text-xs text-cyan-100">
+              {t("chat.welcome")},{" "}
+              {user?.user_metadata?.full_name || user?.email}
+            </p>
+          </div>
+          <div
+            className={`flex items-center ${
+              isRTL ? "space-x-reverse" : ""
+            } space-x-2`}
+          >
+            <Button
+              onClick={createNewChat}
+              disabled={isSaving}
+              className="bg-white/20 hover:bg-white/30 text-white p-2 rounded-lg"
+              title={t("chat.newChat")}
+            >
+              {isSaving ? (
+                <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+              ) : (
+                <Plus size={18} />
+              )}
+            </Button>
+            <Button
+              onClick={handleSignOut}
+              className="bg-white/20 hover:bg-white/30 text-white p-2 rounded-lg"
+              title={t("chat.signOut")}
+            >
+              <LogOut size={18} />
+            </Button>
+            <Button
+              onClick={() => setIsSidebarOpen(false)}
+              className="lg:hidden bg-white/20 hover:bg-white/30 text-white p-2 rounded-lg"
+            >
+              <X size={18} />
+            </Button>
+          </div>
+        </div>
+
+        {/* Chat Sessions List */}
+        <div className="flex-1 overflow-y-auto">
+          {chatSessions.length === 0 ? (
+            <div className="p-4 text-center text-gray-500">
+              <MessageSquare className="mx-auto mb-2" size={32} />
+              <p>{t("chat.noChatSessions")}</p>
+              <p className="text-sm">{t("chat.startNewConversation")}</p>
+            </div>
+          ) : (
+            <div className="p-2">
+              {chatSessions.map((chat) => (
+                <div
+                  key={chat.id}
+                  onClick={() => selectChat(chat.id)}
+                  className={`group relative p-3 mb-2 rounded-lg cursor-pointer transition-all duration-200 hover:bg-gray-50 ${
+                    activeChatId === chat.id
+                      ? "bg-cyan-50 border-l-4 border-l-cyan-500"
+                      : "hover:bg-gray-50"
+                  }`}
+                >
+                  <div className="flex items-start justify-between">
+                    <div className="flex-1 min-w-0">
+                      {editingChatId === chat.id ? (
+                        <div className="space-y-2">
+                          <Input
+                            value={editingTitle}
+                            onChange={(e) => setEditingTitle(e.target.value)}
+                            onKeyPress={(e) => {
+                              if (e.key === "Enter") {
+                                saveEditedTitle(chat.id);
+                              } else if (e.key === "Escape") {
+                                cancelEditingTitle();
+                              }
+                            }}
+                            className="text-sm"
+                            autoFocus
+                          />
+                          <div className="flex space-x-1">
+                            <Button
+                              onClick={(e) => {
+                                e.stopPropagation();
+                                saveEditedTitle(chat.id);
+                              }}
+                              className="text-xs px-2 py-1 bg-green-500 text-white rounded"
+                            >
+                              Save
+                            </Button>
+                            <Button
+                              onClick={(e) => {
+                                e.stopPropagation();
+                                cancelEditingTitle();
+                              }}
+                              className="text-xs px-2 py-1 bg-gray-500 text-white rounded"
+                            >
+                              Cancel
+                            </Button>
+                          </div>
+                        </div>
+                      ) : (
+                        <>
+                          <h3 className="font-medium text-slate-700 truncate">
+                            {chat.title}
+                          </h3>
+                          <p className="text-sm text-gray-500 truncate mt-1">
+                            {chat.messages?.length > 1
+                              ? chat.messages[
+                                  chat.messages.length - 1
+                                ]?.content?.slice(0, 50) + "..."
+                              : "New conversation"}
+                          </p>
+                          <p className="text-xs text-gray-400 mt-1">
+                            {formatTimestamp(chat.created_at)}
+                          </p>
+                        </>
+                      )}
+                    </div>
+
+                    {/* Chat Actions */}
+                    {editingChatId !== chat.id && (
+                      <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-200 flex space-x-1">
+                        <Button
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            startEditingTitle(chat.id, chat.title);
+                          }}
+                          className="p-1 text-gray-400 hover:text-gray-600 hover:bg-gray-200 rounded"
+                          title="Edit Title"
+                        >
+                          <Edit3 size={14} />
+                        </Button>
+                        <Button
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            handleDeleteChat(chat.id);
+                          }}
+                          className="p-1 text-gray-400 hover:text-red-600 hover:bg-red-100 rounded"
+                          title="Delete Chat"
+                        >
+                          <Trash2 size={14} />
+                        </Button>
+                      </div>
+                    )}
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
+
+        {/* Supabase Integration Status */}
+        <div className="p-4 border-t bg-gray-50">
+          <div className="text-xs text-gray-500 text-center">
+            <p>🔗 {t("chat.connectedToSupabase")}</p>
+            <p>{t("chat.chatsAutoSaved")}</p>
+          </div>
+        </div>
+      </div>
+
+      {/* Overlay for mobile */}
+      {isSidebarOpen && (
+        <div
+          className="fixed inset-0 bg-black bg-opacity-50 z-40 lg:hidden"
+          onClick={() => setIsSidebarOpen(false)}
+        />
+      )}
+
+      {/* Main Chat Area */}
+      <div className="flex-1 flex flex-col">
+        {/* Chat Header */}
+        <div className="bg-gradient-to-r from-slate-700 to-cyan-600 p-4 text-white shadow-lg">
+          <div
+            className={`flex items-center ${
+              isRTL ? "space-x-reverse" : ""
+            } space-x-3`}
+          >
+            <Button
+              onClick={() => setIsSidebarOpen(true)}
+              className="lg:hidden bg-white/20 hover:bg-white/30 text-white p-2 rounded-lg"
+            >
+              <Menu size={18} />
+            </Button>
+            <div className="bg-white/20 p-2 rounded-full">
+              <Bot size={24} />
+            </div>
+            <div>
+              <h1 className="text-xl font-bold">{t("chat.title")}</h1>
+              <p className="text-cyan-100">{t("chat.subtitle")}</p>
+            </div>
+          </div>
+        </div>
+
+        {/* Messages Container */}
+        <div className="flex-1 flex flex-col bg-white">
+          {/* Messages */}
+          <div className="flex-1 overflow-y-auto p-6 space-y-4">
+            {messages.map((message) => (
+              <div
+                key={message.id}
+                className={`flex ${
+                  message.role === "user" ? "justify-end" : "justify-start"
+                } animate-in slide-in-from-bottom-2 duration-300`}
+              >
+                <div
+                  className={`flex items-start space-x-2 max-w-[80%] ${
+                    message.role === "user"
+                      ? "flex-row-reverse space-x-reverse"
+                      : ""
+                  }`}
+                >
+                  <div
+                    className={`p-2 rounded-full ${
+                      message.role === "user" ? "bg-cyan-500" : "bg-slate-600"
+                    }`}
+                  >
+                    {message.role === "user" ? (
+                      <User className="text-white" size={16} />
+                    ) : (
+                      <Bot className="text-white" size={16} />
+                    )}
+                  </div>
+                  <div
+                    className={`p-3 rounded-2xl ${
+                      message.role === "user"
+                        ? "bg-cyan-500 text-white"
+                        : "bg-gray-100 text-gray-800"
+                    }`}
+                  >
+                    <p className="text-sm md:text-base">{message.content}</p>
+                    <p
+                      className={`text-xs mt-1 ${
+                        message.role === "user"
+                          ? "text-cyan-100"
+                          : "text-gray-500"
+                      }`}
+                    >
+                      {new Date(message.timestamp).toLocaleTimeString()}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            ))}
+
+            {isLoading && <ThinkingAnimation />}
+            <div ref={messagesEndRef} />
+          </div>
+
+          {/* Suggested Topics */}
+          {messages.length === 1 && (
+            <div className="px-6 pb-4">
+              <h3 className="text-sm font-semibold text-gray-600 mb-3">
+                Suggested Topics:
+              </h3>
+              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2">
+                {suggestedTopics.map((topic, index) => (
+                  <Button
+                    key={index}
+                    variant="outline"
+                    size="sm"
+                    onClick={() => handleSuggestedTopic(topic.query)}
+                    className="text-left justify-start h-auto p-2 hover:bg-cyan-50 hover:border-cyan-300 transition-all duration-200"
+                  >
+                    <span className="mr-1">{topic.icon}</span>
+                    <span className="text-xs">{topic.text}</span>
+                  </Button>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {/* Input Area */}
+          <div className="border-t p-4">
+            <div className="flex space-x-2">
+              <Input
+                value={input}
+                onChange={(e) => setInput(e.target.value)}
+                onKeyPress={handleKeyPress}
+                placeholder={t("chat.typePlaceholder")}
+                className="flex-1 rounded-xl border-2 focus:border-cyan-500"
+                disabled={isLoading}
+                maxLength={500}
+              />
+              <Button
+                onClick={handleSend}
+                disabled={!input.trim() || isLoading}
+                className="bg-cyan-500 hover:bg-cyan-600 rounded-xl px-6"
+              >
+                <Send size={18} />
+              </Button>
+            </div>
+            <p className="text-xs text-gray-500 mt-2">
+              Press Enter to send • {input.length}/500 characters
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+supabase : 
+import { createClient } from "@supabase/supabase-js";
+
+const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
+const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+
+export const supabase = createClient(supabaseUrl, supabaseAnonKey);
+
+// Auth helper functions
+export const signUp = async (email, password, fullName) => {
+  try {
+    const { data, error } = await supabase.auth.signUp({
+      email,
+      password,
+      options: {
+        data: {
+          full_name: fullName,
+        },
+      },
+    });
+
+    if (error) throw error;
+    return { data, error: null };
+  } catch (error) {
+    return { data: null, error: error.message };
+  }
+};
+
+export const signIn = async (email, password) => {
+  try {
+    const { data, error } = await supabase.auth.signInWithPassword({
+      email,
+      password,
+    });
+
+    if (error) throw error;
+    return { data, error: null };
+  } catch (error) {
+    return { data: null, error: error.message };
+  }
+};
+
+export const signOut = async () => {
+  try {
+    const { error } = await supabase.auth.signOut();
+    if (error) throw error;
+    return { error: null };
+  } catch (error) {
+    return { error: error.message };
+  }
+};
+
+export const getCurrentUser = async () => {
+  try {
+    const {
+      data: { user },
+      error,
+    } = await supabase.auth.getUser();
+    if (error) throw error;
+    return { user, error: null };
+  } catch (error) {
+    return { user: null, error: error.message };
+  }
+};
+
+// Password reset function with redirectTo
+export const resetPassword = async (email, redirectTo) => {
+  try {
+    const { error } = await supabase.auth.resetPasswordForEmail(email, {
+      redirectTo,
+    });
+    if (error) throw error;
+    return { error: null };
+  } catch (error) {
+    return { error: error.message };
+  }
+};
+
+// Chat helper functions
+export const saveChat = async (title, messages, userId) => {
+  try {
+    const { data, error } = await supabase
+      .from("chats")
+      .insert([
+        {
+          title,
+          messages,
+          user_id: userId,
+        },
+      ])
+      .select()
+      .single();
+
+    if (error) throw error;
+    return { data, error: null };
+  } catch (error) {
+    return { data: null, error: error.message };
+  }
+};
+
+export const getUserChats = async (userId) => {
+  try {
+    const { data, error } = await supabase
+      .from("chats")
+      .select("*")
+      .eq("user_id", userId)
+      .order("created_at", { ascending: false });
+
+    if (error) throw error;
+    return { data, error: null };
+  } catch (error) {
+    return { data: null, error: error.message };
+  }
+};
+
+export const updateChatTitle = async (chatId, newTitle) => {
+  try {
+    const { data, error } = await supabase
+      .from("chats")
+      .update({ title: newTitle })
+      .eq("id", chatId)
+      .select()
+      .single();
+
+    if (error) throw error;
+    return { data, error: null };
+  } catch (error) {
+    return { data: null, error: error.message };
+  }
+};
+
+export const updateChatMessages = async (chatId, messages) => {
+  try {
+    const { data, error } = await supabase
+      .from("chats")
+      .update({ messages })
+      .eq("id", chatId)
+      .select()
+      .single();
+
+    if (error) throw error;
+    return { data, error: null };
+  } catch (error) {
+    return { data: null, error: error.message };
+  }
+};
+
+export const deleteChat = async (chatId) => {
+  try {
+    const { error } = await supabase.from("chats").delete().eq("id", chatId);
+
+    if (error) throw error;
+    return { error: null };
+  } catch (error) {
+    return { error: error.message };
+  }
+};
 
 
 
+I need to implement authentication state management in the navigation bar with dynamic button visibility. Here are the specific requirements:
+
+1. Navigation Bar Behavior (`app/navigation/page.js`):
+- Initial state (logged out):
+  * Show "Sign In" and "Sign Up" buttons
+  * Hide "Sign Out" button
+- Logged in state:
+  * Hide "Sign In" and "Sign Up" buttons
+  * Show "Sign Out" button
+- Use Supabase auth to manage and check user session state
+- The navigation must be client-side rendered
+
+2. Button Functionality:
+- "Sign In" button: Links to "/login" (existing functionality)
+- "Sign Up" button: Links to "/signup" (existing functionality)
+- "Sign Out" button: Calls Supabase auth signOut() and redirects to home page
+
+3. State Management Requirements:
+- Use React state to track authentication status
+- Implement useEffect to listen to auth state changes with Supabase's auth.onAuthStateChange
+- State changes should trigger immediate UI updates without page reload
+- Import Supabase client from "@/lib/supabase"
+
+4. Additional Requirements:
+- Use the existing `useLanguage` hook for translations
+- Support RTL layout for Arabic language
+- Maintain existing styling and Tailwind classes
+- Ensure all buttons follow the current design system
+- Handle auth state persistence properly
+
+5. Expected User Flow:
+1. First visit: See Sign In/Sign Up buttons
+2. After login: Buttons immediately switch to Sign Out
+3. After sign out: Immediately revert to Sign In/Sign Up buttons
+
+6. Technical Implementation:
+- Create necessary state variables for auth status
+- Implement auth listener in useEffect
+- Add cleanup function for auth listener
+- Use Supabase's getSession() for initial auth check
+- Implement signOut function that calls await supabase.auth.signOut()
+
+Please provide the complete implementation for the navigation component with these requirements. Include:
+1. All necessary imports
+2. State management logic
+3. Auth listener setup
+4. Button visibility logic
+5. Sign out functionality
+6. RTL support for Arabic
+7. Cleanup functions
+
+The solution should maintain all existing functionality while adding these auth state features.

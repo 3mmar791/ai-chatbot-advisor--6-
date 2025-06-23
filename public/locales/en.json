@@ -8,7 +8,8 @@
     "faq": "FAQ",
     "signIn": "Sign In",
     "signUp": "Sign Up",
-    "aiAdvisor": "AI Academic Advisor"
+    "aiAdvisor": "AI Academic Advisor",
+    "signOut": "Sign Out"
   },
   "common": {
     "loading": "Loading...",
