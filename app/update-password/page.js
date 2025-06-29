@@ -398,29 +398,60 @@ export default function UpdatePasswordPage() {
                         }`}
                       >
                         {t(
-                          `auth.passwordStrength.${passwordStrength.strength}`
+                          `auth.signUp.passwordStrength.${passwordStrength.strength}`
                         ).toUpperCase()}
                       </span>
                     </div>
 
                     <div className="grid grid-cols-2 gap-1 text-xs">
-                      {Object.entries(passwordStrength.checks).map(
-                        ([key, value]) => (
-                          <div
-                            key={key}
-                            className="flex items-center space-x-1"
-                          >
-                            {value ? (
-                              <Check className="text-green-500" size={12} />
-                            ) : (
-                              <X className="text-red-500" size={12} />
-                            )}
-                            <span>
-                              {t(`auth.passwordStrength.requirements.${key}`)}
-                            </span>
-                          </div>
-                        )
-                      )}
+                      <div className="flex items-center space-x-1">
+                        {passwordStrength.checks.length ? (
+                          <Check className="text-green-500" size={12} />
+                        ) : (
+                          <X className="text-red-500" size={12} />
+                        )}
+                        <span>
+                          {t(
+                            "auth.signUp.passwordStrength.requirements.characters"
+                          )}
+                        </span>
+                      </div>
+                      <div className="flex items-center space-x-1">
+                        {passwordStrength.checks.uppercase ? (
+                          <Check className="text-green-500" size={12} />
+                        ) : (
+                          <X className="text-red-500" size={12} />
+                        )}
+                        <span>
+                          {t(
+                            "auth.signUp.passwordStrength.requirements.uppercase"
+                          )}
+                        </span>
+                      </div>
+                      <div className="flex items-center space-x-1">
+                        {passwordStrength.checks.number ? (
+                          <Check className="text-green-500" size={12} />
+                        ) : (
+                          <X className="text-red-500" size={12} />
+                        )}
+                        <span>
+                          {t(
+                            "auth.signUp.passwordStrength.requirements.number"
+                          )}
+                        </span>
+                      </div>
+                      <div className="flex items-center space-x-1">
+                        {passwordStrength.checks.special ? (
+                          <Check className="text-green-500" size={12} />
+                        ) : (
+                          <X className="text-red-500" size={12} />
+                        )}
+                        <span>
+                          {t(
+                            "auth.signUp.passwordStrength.requirements.symbol"
+                          )}
+                        </span>
+                      </div>
                     </div>
                   </div>
                 )}

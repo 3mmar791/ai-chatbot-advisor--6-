@@ -256,7 +256,7 @@ export default function SignUpPage() {
                   htmlFor="email"
                   className="block text-sm font-medium text-gray-700 mb-2"
                 >
-                  📧 {t("auth.signUp.emailAddress")}
+                  📧 {t("auth.signUp.email")}
                 </label>
                 <div className="relative">
                   <div
@@ -378,7 +378,11 @@ export default function SignUpPage() {
                         ) : (
                           <X className="text-red-500" size={12} />
                         )}
-                        <span>{t("auth.signUp.passwordLength")}</span>
+                        <span>
+                          {t(
+                            "auth.signUp.passwordStrength.requirements.characters"
+                          )}
+                        </span>
                       </div>
                       <div className="flex items-center space-x-1">
                         {passwordStrength.checks.uppercase ? (
@@ -386,7 +390,11 @@ export default function SignUpPage() {
                         ) : (
                           <X className="text-red-500" size={12} />
                         )}
-                        <span>{t("auth.signUp.passwordUppercase")}</span>
+                        <span>
+                          {t(
+                            "auth.signUp.passwordStrength.requirements.uppercase"
+                          )}
+                        </span>
                       </div>
                       <div className="flex items-center space-x-1">
                         {passwordStrength.checks.number ? (
@@ -394,7 +402,11 @@ export default function SignUpPage() {
                         ) : (
                           <X className="text-red-500" size={12} />
                         )}
-                        <span>{t("auth.signUp.passwordNumber")}</span>
+                        <span>
+                          {t(
+                            "auth.signUp.passwordStrength.requirements.number"
+                          )}
+                        </span>
                       </div>
                       <div className="flex items-center space-x-1">
                         {passwordStrength.checks.special ? (
@@ -402,7 +414,11 @@ export default function SignUpPage() {
                         ) : (
                           <X className="text-red-500" size={12} />
                         )}
-                        <span>{t("auth.signUp.passwordSymbol")}</span>
+                        <span>
+                          {t(
+                            "auth.signUp.passwordStrength.requirements.symbol"
+                          )}
+                        </span>
                       </div>
                     </div>
                   </div>
